@@ -1,4 +1,4 @@
-# guess-my-number
+
 <h1>JavaScript Number Guessing Game Project</h1>
 
 <h2>Project Objective</h2>
