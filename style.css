@@ -4,7 +4,7 @@ body {
   font-family: 'Press Start 2P', sans-serif;
   color: #eee;
   background-color: #222;
-  box-sizing: border-box; 
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -12,41 +12,43 @@ body {
 /** Header **/
 header {
   width: 100%;
-  height: 200px;
+  height: 300px;
   position: relative;
   border-bottom: 7px solid #eee;
+  text-align: center;
+  margin: 0 auto;
+  justify-content: center;
+  align-content: center;
 }
 
 h1 {
-  text-align: center;
   position: absolute;
   color: rgb(224, 224, 4);
   width: 100%;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
+  line-height: 3rem;
 }
 .between {
   position: absolute;
-  top: 2rem;
-  right: 2rem;
+  top: 30%;
+  width: 100%;
 }
 
 .again {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
+  top: 1rem;
 }
 
 .again:hover {
   background-color: rgb(197, 3, 3);
-  transition:ease-out 0.4s;
+  transition: ease-out 0.4s;
   color: white;
 }
 
 .number {
   background: #eee;
-  font-size: 2rem;
+  font-size: 1rem;
   color: #333;
   width: 8rem;
   padding: 1.5rem 0rem;
@@ -59,17 +61,17 @@ h1 {
 /** Main Container **/
 
 .main-container {
-  width: 100%;
+  width: 90%;
   margin: 0 auto;
   margin-top: 10%;
   margin-bottom: 10%;
   height: auto;
   color: #eee;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  font-size: 1.5rem;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
 }
 
 /** New Class - Win Message **/
@@ -90,15 +92,14 @@ h1 {
   padding: 2rem;
   width: 15rem;
   text-align: center;
-  display: block;
   margin-bottom: 3rem;
 }
 
 /** Hide input spinner **/
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .btn {
@@ -111,91 +112,63 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .check:hover {
   background-color: rgb(36, 94, 22);
-  transition:ease-out 0.4s;
+  transition: ease-out 0.4s;
   color: white;
 }
 
 .message {
-  margin-bottom: 6rem;
+  margin-bottom: 4rem;
   height: 3rem;
+  padding: 30px;
 }
 
 .label-score {
   margin-bottom: 2rem;
 }
 
-
 /** Media Queries **/
 
-
-@media only screen and (max-width: 1201px) {
-  header {
-    height: 250px;
+@media screen and (min-width: 600px) {
+  .left {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
   }
 }
 
+@media screen and (min-width: 801px) {
+  .between {
+    position: absolute;
+    top: 2rem;
+    right: 1rem;
+    text-align: right;
+  }
 
-@media only screen and (max-width: 801px) {
+  .again {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+  }
+
+  .main-container {
+    width: 90%;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    font-size: 1.4rem;
+    line-height: 2rem;
+  }
+  .number {
+    font-size: 3rem;
+  }
+}
+
+@media screen and (min-width: 1025px) {
   header {
     height: 200px;
   }
   h1 {
-    font-size: 1.5rem;
+    top: 45%;
   }
-    .again {
-      font-size: 0.8rem;
-      padding: 1.5rem;
-    }
-    .between {
-      font-size: 0.8rem;
-    }
-    .main-container {
-      font-size: 1rem;
-    }
-
-    .btn {
-      padding: 1.3rem 2rem;
-    }
-    .guess {
-      padding: 1.5rem;
-      width: 13rem;
-    }
-}
-
-
-@media only screen and (max-width: 600px) {
-  header {
-    height: 250px;
-  }
-  h1 {
-    padding: 50px;
-  }
-    .again {
-      font-size: 0.6rem;
-    }
-  .main-container {
-    flex-direction: column-reverse;
-    gap: 30px;
-    font-size: 1.5rem;
-  }
-  .message {
-    margin-bottom: 2rem;
-    height: 3rem;
-  }
-  .left {
-    text-align: center;
-  }
-
-}
-
-@media only screen and (max-width: 480px) {
-  header {
-    height: 250px;
-  }
-    .again {
-      font-size: 0.5rem;
-    }
-  .main-container {
-    font-size: 1.2rem;
-  } 
 }
