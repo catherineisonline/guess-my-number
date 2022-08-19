@@ -172,4 +172,7 @@ h2 {
     grid-template-columns: repeat(2, 1fr);
     margin-top: 5%;
   }
+  .main-container.winner {
+    grid-template-columns: 1fr;
+  }
 }

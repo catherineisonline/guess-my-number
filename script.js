@@ -4,6 +4,7 @@ const message = document.querySelector(".message");
 const scoreText = document.querySelector(".score");
 const hiddenNumber = document.querySelector(".hidden-number");
 //Sections
+const mainContainer = document.querySelector(".main-container");
 const rightSection = document.querySelector(".right");
 const leftSection = document.querySelector(".left");
 const bodyElement = document.body;
@@ -38,6 +39,7 @@ const winnerAnnouncement = function () {
   changeColor(yellowColor);
   bodyElement.style.backgroundColor = greenColor;
   leftSection.style.display = "none";
+  mainContainer.classList.add("winner");
   //Reveal hidden number
   hiddenNumber.value = secretNumber;
   //Confetti
@@ -46,6 +48,7 @@ const winnerAnnouncement = function () {
 // Guess function
 checkBtn.addEventListener("click", function () {
   // empty value
+  console.log(numberInput.value);
   if (numberInput.value == null || numberInput.value == "") {
     displayMessage("Please write a number...");
     changeColor(redColor);
@@ -88,13 +91,14 @@ restartBtn.addEventListener("click", function () {
   changeColor("white");
   bodyElement.style.backgroundColor = "#222";
   hiddenNumber.textContent = "?";
+  mainContainer.classList.remove("winner");
 });
 
 //Save value with Enter
-window.addEventListener("keypress", function (event) {
-  //   if (event.keyCode == 13) {
-  checkBtn.click();
-  //   }
+numberInput.addEventListener("keypress", function (event) {
+  if (event.keyCode == 13) {
+    checkBtn.click();
+  }
 });
 
 //Confetti function
