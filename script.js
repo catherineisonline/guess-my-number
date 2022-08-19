@@ -9,7 +9,9 @@ const leftSection = document.querySelector(".left");
 const bodyElement = document.body;
 //Buttons
 const restartBtn = document.querySelector(".again");
-const checkBtn = document.querySelector(".check");
+const submitNumber = document.querySelector(".submit-number");
+//Input
+const numberInput = document.querySelector(".number-input");
 //Colors
 const redColor = "rgb(197, 3, 3)";
 const yellowColor = "rgb(224, 224, 4)";
@@ -19,44 +21,49 @@ let secretNumber = Math.trunc(Math.random() * 20) + 1;
 // Setting score/highscore starting point
 let score = 10;
 let highscore = 0;
-
-// Message function
+// Display message function
 const displayMessage = function (messageText) {
   message.textContent = messageText;
 };
-// Color change function
+// Change color function
 const changeColor = function (newColor) {
   message.style.color = newColor;
 };
-
+//Winner announcement
+const winnerAnnouncement = function () {
+  //Display winner message
+  rightSection.classList.add("win-message");
+  displayMessage("You win! Great Job!");
+  //Change styles
+  changeColor(yellowColor);
+  bodyElement.style.backgroundColor = greenColor;
+  leftSection.style.display = "none";
+  //Reveal hidden number
+  hiddenNumber.value = secretNumber;
+  //Confetti
+  fireConfetti();
+};
 // Guess function
-checkBtn.addEventListener("click", function () {
-  let guessNumber = document.querySelector(".guess").value;
+submitNumber.addEventListener("click", function () {
   // empty value
-  if (guessNumber == null || guessNumber == "") {
+  if (numberInput.value == null || numberInput.value == "") {
     displayMessage("Please write a number...");
     changeColor(redColor);
   }
   //correct number
-  else if (guessNumber == secretNumber) {
-    displayMessage("You win! Great Job!");
-    fireConfetti();
-    hiddenNumber.textContent = secretNumber;
-    changeColor(yellowColor);
-    rightSection.classList.add("win-message");
-    bodyElement.style.backgroundColor = greenColor;
-    leftSection.style.display = "none";
+  else if (numberInput.value == secretNumber) {
+    winnerAnnouncement();
     if (score > highscore) {
       highscore = score;
       document.querySelector(".highscore").textContent = highscore;
     }
   }
   // number is too high/low
-  else if (guessNumber !== secretNumber) {
+  else if (numberInput.value !== secretNumber) {
     //score is over 0
     if (score > 1) {
       message.textContent =
-        guessNumber > secretNumber ? "Too high..." : "Too low...";
+        numberInput.value > secretNumber ? "Too high..." : "Too low...";
       changeColor(yellowColor);
       score--;
       scoreText.textContent = score;
@@ -77,17 +84,17 @@ restartBtn.addEventListener("click", function () {
   displayMessage("Start playing...");
   leftSection.style.display = "";
   rightSection.classList.remove("win-message");
-  document.querySelector(".guess").value = "";
+  numberInput.value = "";
   changeColor("white");
   bodyElement.style.backgroundColor = "#222";
   hiddenNumber.textContent = "?";
 });
 
 //Save value with Enter
-document.querySelector(".guess").addEventListener("keypress", function (event) {
-  if (event.keyCode == 13) {
-    checkBtn.click();
-  }
+window.addEventListener("keypress", function (event) {
+  //   if (event.keyCode == 13) {
+  submitNumber.click();
+  //   }
 });
 
 //Confetti function

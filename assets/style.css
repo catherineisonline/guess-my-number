@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap");
 
 body {
-  font-family: 'Press Start 2P', sans-serif;
+  font-family: "Press Start 2P", sans-serif;
   color: #eee;
   background-color: #222;
   box-sizing: border-box;
@@ -83,7 +83,7 @@ h1 {
   text-align: center;
 }
 
-.guess {
+.number-input {
   background: none;
   border: 4px solid #eee;
   font-family: inherit;
@@ -96,8 +96,8 @@ h1 {
 }
 
 /** Hide input spinner **/
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
@@ -110,7 +110,7 @@ input[type='number']::-webkit-outer-spin-button {
   padding: 2rem 3rem;
   cursor: pointer;
 }
-.check:hover {
+.submit-number:hover {
   background-color: rgb(36, 94, 22);
   transition: ease-out 0.4s;
   color: white;
