@@ -2,14 +2,14 @@
 //Text content
 const message = document.querySelector(".message");
 const scoreText = document.querySelector(".score");
-const hiddenNumber = document.querySelector(".number");
+const hiddenNumber = document.querySelector(".hidden-number");
 //Sections
 const rightSection = document.querySelector(".right");
 const leftSection = document.querySelector(".left");
 const bodyElement = document.body;
 //Buttons
 const restartBtn = document.querySelector(".again");
-const submitNumber = document.querySelector(".submit-number");
+const checkBtn = document.querySelector(".submit-number");
 //Input
 const numberInput = document.querySelector(".number-input");
 //Colors
@@ -44,7 +44,7 @@ const winnerAnnouncement = function () {
   fireConfetti();
 };
 // Guess function
-submitNumber.addEventListener("click", function () {
+checkBtn.addEventListener("click", function () {
   // empty value
   if (numberInput.value == null || numberInput.value == "") {
     displayMessage("Please write a number...");
@@ -93,7 +93,7 @@ restartBtn.addEventListener("click", function () {
 //Save value with Enter
 window.addEventListener("keypress", function (event) {
   //   if (event.keyCode == 13) {
-  submitNumber.click();
+  checkBtn.click();
   //   }
 });
 

@@ -17,13 +17,16 @@
 
 <body>
   <header role="banner">
-    <h1>Guess My Number
-    </h1>
-    <p class="between">(Between 1 and 20)</p>
     <!-- Restart Button -->
-    <button class="btn again">Restart!</button>
+    <section>
+      <button type="button" class="btn again">Restart!</button>
+      <p class="number-range">(Between 1 and 20)</p>
+    </section>
+    <h1>Guess My Number</h1>
     <!-- Hidden Number -->
-    <div class="number">?</div>
+    <section class="secret-number">
+      <p class="hidden-number">?</p>
+    </section>
   </header>
   <main role="main">
     <article role="contentinfo" aria-label="Number guessing game input and results" class="main-container">
