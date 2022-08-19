@@ -1,7 +1,5 @@
+<img src="https://github.com/catherineisonline/guess-my-number/blob/main/assets/project%20preview.png?raw=true" ></img>
 
-
-
-<img src="https://github.com/catherineisonline/guess-my-number/blob/main/project%20preview.png?raw=true" ></img>
 <h1>JavaScript Number Guessing Game Project</h1>
 
 <h2>Project Objective</h2>
