@@ -7,11 +7,12 @@
 This JavaScript number guessing game project's main goal is to code a game where the user must guess a randomly generated number from 1 to 20.
 Depending on the number input, the user receives different messages until they guess the secret number.
 
-<h2>What did I use?</h2>
-<ul>
-  <li>Math.random()</li>
-  <li>DOM manipulations</li>
-  <li>Functions</li>
-  <li>Array</li>
-  <li>Conditionals</li>
-</ul>
+## Built with
+
+- Math.random()
+- DOM manipulations
+- Functions
+- Conditionals
+- CSS
+- HTML
+- <a href="https://github.com/catdad/canvas-confetti">Perfect Pixel</a> - Confetti API
