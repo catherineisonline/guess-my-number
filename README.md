@@ -15,4 +15,4 @@ Depending on the number input, the user receives different messages until they g
 - Conditionals
 - CSS
 - HTML
-- <a href="https://github.com/catdad/canvas-confetti">Perfect Pixel</a> - Confetti API
+- <a href="https://github.com/catdad/canvas-confetti">Confetti API</a>
