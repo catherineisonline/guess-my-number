@@ -1,78 +1,130 @@
-'use strict';
-// Defining secret number 'Between 1 and 20'
-let correctNumber = Math.trunc(Math.random() * 20) + 1;
-
+"use strict";
+//Text content
+const message = document.querySelector(".message");
+const scoreText = document.querySelector(".score");
+const hiddenNumber = document.querySelector(".number");
+//Sections
+const rightSection = document.querySelector(".right");
+const leftSection = document.querySelector(".left");
+const bodyElement = document.body;
+//Buttons
+const restartBtn = document.querySelector(".again");
+const checkBtn = document.querySelector(".check");
+//Colors
+const redColor = "rgb(197, 3, 3)";
+const yellowColor = "rgb(224, 224, 4)";
+const greenColor = "rgb(36, 94, 22)";
+//
+let secretNumber = Math.trunc(Math.random() * 20) + 1;
 // Setting score/highscore starting point
 let score = 10;
 let highscore = 0;
 
 // Message function
-const displayMessage = function (message) {
-    document.querySelector('.message').textContent = message;
+const displayMessage = function (messageText) {
+  message.textContent = messageText;
 };
-
 // Color change function
 const changeColor = function (newColor) {
-    document.querySelector('.message').style.color = newColor;
+  message.style.color = newColor;
 };
 
 // Guess function
-document.querySelector('.check').addEventListener('click', function () {
-    let guessNumber = document.querySelector('.guess').value;
-    // empty value
-    if (guessNumber == null || guessNumber == '') {
-        displayMessage('Please write a number...');
-        changeColor('rgb(197, 3, 3)');
+checkBtn.addEventListener("click", function () {
+  let guessNumber = document.querySelector(".guess").value;
+  // empty value
+  if (guessNumber == null || guessNumber == "") {
+    displayMessage("Please write a number...");
+    changeColor(redColor);
+  }
+  //correct number
+  else if (guessNumber == secretNumber) {
+    displayMessage("You win! Great Job!");
+    fireConfetti();
+    hiddenNumber.textContent = secretNumber;
+    changeColor(yellowColor);
+    rightSection.classList.add("win-message");
+    bodyElement.style.backgroundColor = greenColor;
+    leftSection.style.display = "none";
+    if (score > highscore) {
+      highscore = score;
+      document.querySelector(".highscore").textContent = highscore;
     }
-    //correct number
-    else if (guessNumber == correctNumber) {
-        displayMessage('You win! Great Job!');
-        document.querySelector('.number').textContent = correctNumber;
-        changeColor('rgb(224, 224, 4)');
-        document.querySelector('.right').classList.add('win-message');
-        document.body.style.backgroundColor = 'rgb(36, 94, 22)';
-        document.querySelector('.left').style.display = 'none';
-        if (score > highscore) {
-            highscore = score;
-            document.querySelector('.highscore').textContent = highscore;
-        }
+  }
+  // number is too high/low
+  else if (guessNumber !== secretNumber) {
+    //score is over 0
+    if (score > 1) {
+      message.textContent =
+        guessNumber > secretNumber ? "Too high..." : "Too low...";
+      changeColor(yellowColor);
+      score--;
+      scoreText.textContent = score;
     }
-    // number is too high/low
-    else if (guessNumber !== correctNumber) {
-        //score is over 0
-        if (score > 1) {
-            document.querySelector('.message').textContent =
-                guessNumber > correctNumber ? 'Too high...' : 'Too low...';
-            changeColor('rgb(224, 224, 4)');
-            score--;
-            document.querySelector('.score').textContent = score;
-        }
-        //score reached 0
-        else {
-            document.querySelector('.score').textContent = 0;
-            displayMessage('You lost! Please restart...');
-        }
+    //score reached 0
+    else {
+      scoreText.textContent = 0;
+      displayMessage("You lost! Please restart...");
     }
+  }
 });
 
 //Restart button
-document.querySelector('.again').addEventListener('click', function () {
-    score = 10;
-    correctNumber = Math.trunc(Math.random() * 20) + 1;
-    document.querySelector('.score').textContent = score;
-    displayMessage('Start playing...');
-    document.querySelector('.left').style.display = '';
-    document.querySelector('.right').classList.remove('win-message');
-    document.querySelector('.guess').value = '';
-    changeColor('white');
-    document.body.style.backgroundColor = '#222';
-    document.querySelector('.number').textContent = '?';
+restartBtn.addEventListener("click", function () {
+  score = 10;
+  secretNumber = Math.trunc(Math.random() * 20) + 1;
+  scoreText.textContent = score;
+  displayMessage("Start playing...");
+  leftSection.style.display = "";
+  rightSection.classList.remove("win-message");
+  document.querySelector(".guess").value = "";
+  changeColor("white");
+  bodyElement.style.backgroundColor = "#222";
+  hiddenNumber.textContent = "?";
 });
 
 //Save value with Enter
-let saveButton = document.querySelector('.check');
-document.querySelector('.guess').addEventListener('keypress', function (event) {
-    if (event.keyCode == 13) {
-        saveButton.click();
-    }
+document.querySelector(".guess").addEventListener("keypress", function (event) {
+  if (event.keyCode == 13) {
+    checkBtn.click();
+  }
 });
+
+//Confetti function
+const fireConfetti = function () {
+  let count = 200;
+  let defaults = {
+    origin: { y: 0.7 },
+  };
+
+  function fire(particleRatio, opts) {
+    confetti(
+      Object.assign({}, defaults, opts, {
+        particleCount: Math.floor(count * particleRatio),
+      })
+    );
+  }
+
+  fire(0.25, {
+    spread: 26,
+    startVelocity: 55,
+  });
+  fire(0.2, {
+    spread: 60,
+  });
+  fire(0.35, {
+    spread: 100,
+    decay: 0.91,
+    scalar: 0.8,
+  });
+  fire(0.1, {
+    spread: 120,
+    startVelocity: 25,
+    decay: 0.92,
+    scalar: 1.2,
+  });
+  fire(0.1, {
+    spread: 120,
+    startVelocity: 45,
+  });
+};
